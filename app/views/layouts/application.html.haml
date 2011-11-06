@@ -1,0 +1,20 @@
+
+%html
+  %head
+    %title Iou
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .user{:style => 'float:right;'}
+      - if user_signed_in?
+        = current_user.email
+        |
+        =link_to 'logout', :destroy_user_session, :method => :delete
+      - else
+        =link_to 'login', :new_user_session
+
+    %p{:class => :notice}= notice
+    %p{:class => :notice}= alert
+
+    = yield
