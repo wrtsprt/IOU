@@ -1,0 +1,25 @@
+%h1 Overview
+
+%table{:border => 1}
+  %tr
+    %th User
+    %th Owes you
+    %th You owe
+  - User.without(current_user).each do |user|
+    %tr
+      %td= user.email
+      - sum = dept_status_for(current_user, user)
+      - if sum > 0
+        %td
+        %td= number_to_currency(sum, :locale => :fr)
+      - elsif sum < 0
+        %td= number_to_currency(-1 *sum, :locale => :fr)
+        %td
+      - else
+        %td
+        %td
+
+%br
+
+.menu
+  = link_to 'New split bill', new_transaction_path

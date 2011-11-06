@@ -5,6 +5,14 @@ class Transaction < ActiveRecord::Base
   after_create   :create_dependent_records
   before_destroy :remove_dependent_records
 
+  scope :for_user, ->(user) {
+      joins("JOIN `transaction_records` ON `transaction_records`.`transaction_id` = `transactions`.`id`").where(['`transaction_records`.participant_id = ?', user.id])
+    }
+
+  scope :for_users, ->(user1, user2) {
+      ids_1 = for_user(user1).value_of(:id)
+      for_user(user2).where(['`transaction_records`.transaction_id IN (?)', ids_1])
+    }
 
   def participants_records
     TransactionRecord.participants.for_transaction self.id

@@ -1,9 +1,11 @@
 Iou::Application.routes.draw do
+  get "dashboard/index"
+
   resources :transactions
 
   devise_for :users
 
-  root :to => 'transactions#index'
+  root :to => 'dashboard#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
