@@ -1,9 +1,11 @@
 %h1 Listing transactions
 
-%table
+%table{:border => 1}
   %tr
     %th Name
     %th Amount
+    %th Payer
+    %th Participant
     %th
     %th
     %th
@@ -12,6 +14,8 @@
     %tr
       %td= transaction.name
       %td= transaction.amount
+      %td= show_records_list transaction.payers_records
+      %td= show_records_list transaction.participants_records
       %td= link_to 'Show', transaction
       %td= link_to 'Edit', edit_transaction_path(transaction)
       %td= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete

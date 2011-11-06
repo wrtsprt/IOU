@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111105175907) do
+ActiveRecord::Schema.define(:version => 20111106110145) do
+
+  create_table "transaction_records", :force => true do |t|
+    t.integer  "transaction_id",                               :null => false
+    t.integer  "participant_id",                               :null => false
+    t.decimal  "amount",         :precision => 8, :scale => 2, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "transactions", :force => true do |t|
     t.string   "name"

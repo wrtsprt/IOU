@@ -8,8 +8,13 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
+group :development, :test do
+  gem 'mysql'
+end
 
+group :production do
+  gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -37,10 +42,6 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
-# install a Javascript runtime for linux
-if HOST_OS =~ /linux/i
-  gem 'therubyracer', '>= 0.9.8'
-end
 
 gem "haml", ">= 3.1.2"
 gem "haml-rails", ">= 0.3.4", :group => :development
@@ -50,3 +51,5 @@ gem "capybara", ">= 1.1.1", :group => :test
 gem "database_cleaner", ">= 0.6.7", :group => :test
 gem "launchy", ">= 2.0.5", :group => :test
 gem "devise", ">= 1.4.9"
+
+gem 'valium'
