@@ -7,7 +7,7 @@
     %th You owe
   - User.without(current_user).each do |user|
     %tr
-      %td= user.email
+      %td= link_to user.email, transactions_path(:user => user.id)
       - sum = dept_status_for(current_user, user)
       - if sum > 0
         %td
@@ -19,7 +19,3 @@
         %td
         %td
 
-%br
-
-.menu
-  = link_to 'New split bill', new_transaction_path

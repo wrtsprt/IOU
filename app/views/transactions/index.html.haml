@@ -1,4 +1,4 @@
-%h1 Listing transactions
+%h1 Bills history
 
 %table{:border => 1}
   %tr
@@ -6,7 +6,7 @@
     %th Amount
     %th Payer
     %th Participant
-    %th
+    %th Date
     %th
     %th
 
@@ -16,10 +16,7 @@
       %td= transaction.amount
       %td= show_records_list transaction.payers_records
       %td= show_records_list transaction.participants_records
-      %td= link_to 'Show', transaction
+      %td= transaction.created_at.to_s(:long)
       %td= link_to 'Edit', edit_transaction_path(transaction)
       %td= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete
 
-%br
-
-= link_to 'New Transaction', new_transaction_path

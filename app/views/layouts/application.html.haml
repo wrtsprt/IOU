@@ -18,3 +18,13 @@
     %p{:class => :notice}= alert
 
     = yield
+
+    %br
+
+    .menu
+      = link_to 'Overview', dashboard_index_path
+      |
+      = link_to 'New bill', new_transaction_path
+      |
+      = link_to 'See all bills', transactions_path
+

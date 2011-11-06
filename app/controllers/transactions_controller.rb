@@ -2,10 +2,14 @@ class TransactionsController < ApplicationController
 
   before_filter :authenticate_user!
 
-  # GET /transactions
-  # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = if params[:all]
+      Transaction.all
+    elsif params[:user]
+      Transaction.for_users(current_user, User.find(params[:user]))
+    else
+      Transaction.for_user(current_user)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,8 +17,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # GET /transactions/1
-  # GET /transactions/1.json
   def show
     @transaction = Transaction.find(params[:id])
 
@@ -24,8 +26,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # GET /transactions/new
-  # GET /transactions/new.json
   def new
     @transaction = Transaction.new
 
@@ -35,19 +35,16 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # GET /transactions/1/edit
   def edit
     @transaction = Transaction.find(params[:id])
   end
 
-  # POST /transactions
-  # POST /transactions.json
   def create
     @transaction = Transaction.new(params[:transaction])
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to :dashboard_index_path, notice: 'Bill was successfully created.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
         format.html { render action: "new" }
@@ -56,14 +53,12 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # PUT /transactions/1
-  # PUT /transactions/1.json
   def update
     @transaction = Transaction.find(params[:id])
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to @transaction, notice: 'Bill was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -72,8 +67,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # DELETE /transactions/1
-  # DELETE /transactions/1.json
   def destroy
     @transaction = Transaction.find(params[:id])
     @transaction.destroy
