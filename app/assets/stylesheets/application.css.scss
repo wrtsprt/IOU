@@ -1,0 +1,70 @@
+//= require_self
+//= require_tree .
+
+@import "compass";
+@import "compass/reset";
+@import "blueprint";
+
+$default-font-color: #C6C6C6;
+$default-background-color: #2F2F2F;
+$default-font-size: 14px;
+
+body {
+  background-color: $default-background-color;
+}
+
+a {
+  color: #84BCDE;
+
+  &:hover {
+   color: #fff;
+  }
+}
+
+h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#container {
+  font: $default-font-size $blueprint-font-family;
+  background-color: $default-background-color;
+  color: $default-font-color;
+
+  @include container;
+  @include pie-clearfix;
+  #header, #footer {
+    @include column(24, true); }
+  #sidebar {
+    @include column(3);
+    margin-top: 21px;
+  }
+  #content {
+    @include column(20, true); }
+
+  #header {
+    .user-menu {
+      float: right;
+    }
+  }
+
+  table {
+      $table-color: #7a98c6;
+      @include table-scaffolding;
+      @include inner-table-borders(2px);
+      @include outer-table-borders(2px);
+      td, th {
+        padding: 5px;
+      }
+
+  }
+}
+
+.flash {
+  padding: 5px;
+  .notice {
+    @include notice;
+    background-color: #DADBB1;
+    border-color: #DADBB1;
+  }
+}

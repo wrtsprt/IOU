@@ -1,0 +1,15 @@
+%h1 Overview
+
+%table
+  %tr
+    %th User
+    %th Owes you
+    %th You owe
+  - User.without(current_user).each do |user|
+    %tr
+      %td= link_to user.email, transactions_path(:user => user.id)
+      - sum       = user.owes(current_user)
+      - self_debt = current_user.owes(user)
+
+      %td= number_to_currency(sum, :locale => :fr) unless sum == 0
+      %td= number_to_currency(self_debt, :locale => :fr) unless self_debt == 0

@@ -6,20 +6,22 @@
         - @transaction.errors.full_messages.each do |msg|
           %li= msg
 
-
-
+  .field
+    Who paid?
+    = f.select :creditor, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
 
   .field
-    = f.label :name
-    = f.text_field :name
+    Who participated?
+    = f.select :debtor, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
+
   .field
     = f.label :amount
     = f.number_field :amount
 
-  .field
-    = f.label :name
-    = f.text_field :name
 
+  .field
+    Small description (optional)
+    = f.text_field :name
 
 
   .actions

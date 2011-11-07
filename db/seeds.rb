@@ -9,3 +9,5 @@
 
 User.create! email: 'r@bc.de', :password => 'password1', :password_confirmation => 'password1'
 User.create! email: 'a@bc.de', :password => 'password1', :password_confirmation => 'password1'
+User.create! email: 'b@bc.de', :password => 'password1', :password_confirmation => 'password1'
+User.create! email: 'c@bc.de', :password => 'password1', :password_confirmation => 'password1'
