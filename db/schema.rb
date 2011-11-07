@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20111106110145) do
 
   create_table "transactions", :force => true do |t|
     t.string   "name"
-    t.integer  "amount"
+    t.decimal  "amount",     :precision => 8, :scale => 2, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
