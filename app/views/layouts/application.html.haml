@@ -16,17 +16,18 @@
           - else
             =link_to 'login', :new_user_session
 
-      #sidebar
+      %aside#sidebar
         %ul
           %li= link_to 'Overview', dashboard_path
           %li= link_to 'New bill', new_transaction_path
           %li= link_to 'See all bills', transactions_path
 
       #content
-        - if notice
-          %p{:class => :notice}= notice
-        - if alert
-          %p{:class => :notice}= alert
+        .flash
+          - if notice
+            %p{:class => :notice}= notice
+          - if alert
+            %p{:class => :notice}= alert
 
         = yield
 
