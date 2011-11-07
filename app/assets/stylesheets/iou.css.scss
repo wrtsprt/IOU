@@ -1,0 +1,36 @@
+@import "compass/reset";
+
+$blueprint_grid_columns: 8;
+$blueprint_grid_width: 40px;
+
+@import "blueprint";
+@import "compass/utilities/tables";
+
+@import "blueprint/debug";
+
+.two-col {
+  @include container;
+/*  background-color: #cccccc;*/
+  #header, #footer {
+    @include column(8); }
+  #sidebar {
+    @include column(3); }
+  #content {
+    @include column(5, true); }
+
+
+  #header {
+    .user-menu {
+      float: right;
+    }
+
+  }
+
+  table {
+      $table-color: #7a98c6;
+      @include table-scaffolding;
+      @include inner-table-borders(1px, darken($table-color, 40%));
+      @include outer-table-borders(2px);
+  }
+
+}
