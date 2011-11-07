@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(:version => 20111106110145) do
 
   create_table "transaction_records", :force => true do |t|
     t.integer  "transaction_id",                               :null => false
-    t.integer  "participant_id",                               :null => false
+    t.integer  "creditor_id",                                  :null => false
+    t.integer  "debtor_id",                                    :null => false
     t.decimal  "amount",         :precision => 8, :scale => 2, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"

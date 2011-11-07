@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
 
   scope :without, ->(user) { where ['id != ?', user.id] }
 
+  def owes(other_user)
+    TransactionRecord.where(:creditor_id => other_user.id, :debtor_id => self.id).sum(:amount)
+  end
+
 end

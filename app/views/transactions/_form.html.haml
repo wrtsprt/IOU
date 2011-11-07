@@ -8,11 +8,11 @@
 
   .field
     Who paid?
-    = f.select :payer, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
+    = f.select :creditor, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
 
   .field
     Who participated?
-    = f.select :participant, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
+    = f.select :debtor, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
 
   .field
     = f.label :amount
