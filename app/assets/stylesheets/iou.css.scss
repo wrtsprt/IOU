@@ -10,7 +10,6 @@ $blueprint_grid_width: 40px;
 
 .two-col {
   @include container;
-/*  background-color: #cccccc;*/
   #header, #footer {
     @include column(8); }
   #sidebar {
@@ -18,12 +17,10 @@ $blueprint_grid_width: 40px;
   #content {
     @include column(5, true); }
 
-
   #header {
     .user-menu {
       float: right;
     }
-
   }
 
   table {
@@ -32,5 +29,8 @@ $blueprint_grid_width: 40px;
       @include inner-table-borders(1px, darken($table-color, 40%));
       @include outer-table-borders(2px);
   }
+}
 
+.notice {
+  @include notice;
 }

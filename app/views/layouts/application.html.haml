@@ -6,7 +6,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body{:class => :"two-col"}
-    #container.showgrid
+    #container
       #header
         .user-menu
           - if user_signed_in?
@@ -16,15 +16,17 @@
           - else
             =link_to 'login', :new_user_session
 
-        %p{:class => :notice}= notice
-        %p{:class => :notice}= alert
-
       #sidebar
         %ul
-          %li= link_to 'Overview', dashboard_index_path
+          %li= link_to 'Overview', dashboard_path
           %li= link_to 'New bill', new_transaction_path
           %li= link_to 'See all bills', transactions_path
 
       #content
+        - if notice
+          %p{:class => :notice}= notice
+        - if alert
+          %p{:class => :notice}= alert
+
         = yield
 

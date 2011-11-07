@@ -44,7 +44,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to :dashboard_index_path, notice: 'Bill was successfully created.' }
+        format.html { redirect_to :dashboard, notice: 'Bill was successfully created.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
         format.html { render action: "new" }
