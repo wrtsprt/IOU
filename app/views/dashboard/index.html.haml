@@ -6,10 +6,12 @@
     %th Owes you
     %th You owe
   - User.without(current_user).each do |user|
-    %tr
-      %td= link_to user.email, transactions_path(:user => user.id)
-      - sum       = user.owes(current_user)
-      - self_debt = current_user.owes(user)
+    - sum       = user.owes(current_user)
+    - self_debt = current_user.owes(user)
+    - result    = (sum - self_debt).abs
+    - unless sum == 0 && self_debt == 0
+      %tr
+        %td= link_to user.email, transactions_path(:user => user.id)
 
-      %td= number_to_currency(sum, :locale => :fr) unless sum == 0
-      %td= number_to_currency(self_debt, :locale => :fr) unless self_debt == 0
+        %td{:class => :green}= number_to_currency(result, :locale => :fr) if sum > self_debt
+        %td{:class => :red}=   number_to_currency(result, :locale => :fr) if sum < self_debt

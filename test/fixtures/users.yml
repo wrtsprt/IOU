@@ -4,8 +4,18 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  id: 1
+  email: a@bc.de
+
+two:
+  id: 2
+  email: b@bc.de
+
+three:
+  id: 3
+  email: c@bc.de
+
+four:
+  id: 4
+  email: d@bc.de

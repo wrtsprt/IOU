@@ -40,7 +40,8 @@ gem 'jquery-rails'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'minitest'
+  # gem 'turn', :require => false
 end
 
 gem "haml", ">= 3.1.2"

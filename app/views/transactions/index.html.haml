@@ -2,20 +2,19 @@
 
 %table{:border => 1}
   %tr
-    %th Name
-    %th Amount
+
     %th Payer
     %th Participant
+    %th Description
     %th Date
     %th
     %th
 
   - @transactions.each do |transaction|
     %tr
-      %td= transaction.name
-      %td= transaction.amount
       %td= show_creditors_for_transaction transaction
       %td= show_debtors_for_transaction   transaction
+      %td= transaction.name
       %td= transaction.created_at.to_s(:long)
       %td= link_to 'Edit', edit_transaction_path(transaction)
       %td= link_to 'Destroy', transaction, :confirm => 'Are you sure?', :method => :delete

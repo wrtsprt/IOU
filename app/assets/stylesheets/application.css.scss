@@ -24,6 +24,7 @@ a {
 h1 {
   padding-top: 20px;
   padding-bottom: 20px;
+  font-weight: 700;
 }
 
 #container {
@@ -56,8 +57,31 @@ h1 {
       td, th {
         padding: 5px;
       }
-
   }
+
+  .multi {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    #debtors {
+      label {
+        width: 24%;
+      }
+    }
+  }
+
+  label {
+    float: left;
+    width: 25%;
+  }
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
 }
 
 .flash {

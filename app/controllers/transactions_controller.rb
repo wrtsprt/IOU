@@ -41,6 +41,7 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(params[:transaction])
+    @transaction.debtors= params[:debtors]
 
     respond_to do |format|
       if @transaction.save
@@ -55,6 +56,7 @@ class TransactionsController < ApplicationController
 
   def update
     @transaction = Transaction.find(params[:id])
+    @transaction.debtors= params[:debtors]
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])

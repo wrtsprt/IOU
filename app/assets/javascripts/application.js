@@ -8,3 +8,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+  $('a#add-another').click(function() {
+    $('#debtors li:first').clone().find('input').val('')
+    .end().appendTo('#debtors');
+  });
+  
+});
