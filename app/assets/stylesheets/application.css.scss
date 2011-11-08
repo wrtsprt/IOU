@@ -24,6 +24,7 @@ a {
 h1 {
   padding-top: 20px;
   padding-bottom: 20px;
+  font-weight: 700;
 }
 
 #container {
@@ -73,6 +74,14 @@ h1 {
     float: left;
     width: 25%;
   }
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
 }
 
 .flash {
