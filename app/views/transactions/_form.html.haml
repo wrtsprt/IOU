@@ -7,22 +7,23 @@
           %li= msg
 
   .field
-    Who paid?
+    = label_tag "Who paid?"
     = f.select :creditor, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
 
-  .field
-    Who participated?
-    = f.select :debtor, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
+  .multi
+    %ul#debtors
+      - (@transaction.debtors.empty? ? [nil] : @transaction.debtors).each do |debtor_id|
+        = render 'debtor', :selected => debtor_id
+    .field
+      = link_to "Add Another", "#add", :id => "add-another"
 
   .field
     = f.label :amount
     = f.number_field :amount
 
-
   .field
     Small description (optional)
     = f.text_field :name
-
 
   .actions
     = f.submit 'Save'
