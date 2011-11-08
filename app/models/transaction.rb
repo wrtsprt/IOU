@@ -9,7 +9,7 @@ class Transaction < ActiveRecord::Base
 
   scope :for_user, ->(user) {
     joins("JOIN `transaction_records` ON `transaction_records`.`transaction_id` = `transactions`.`id`")
-    .where(['`transaction_records`.creditor_id = ? OR `transaction_records`.debtor_id = ?', user.id, user.id])
+    .where(['`transaction_records`.creditor_id = ? OR `transaction_records`.debtor_id = ?', user.id, user.id]).select("DISTINCT `transactions`.*")
   }
 
   scope :for_users, ->(user1, user2) {
