@@ -7,7 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create! email: 'r@bc.de', :password => 'password1', :password_confirmation => 'password1'
-User.create! email: 'a@bc.de', :password => 'password1', :password_confirmation => 'password1'
-User.create! email: 'b@bc.de', :password => 'password1', :password_confirmation => 'password1'
+u1 = User.new email: 'r@bc.de', :password => 'password1', :password_confirmation => 'password1'
+u1.save!
+u2 = User.new email: 'a@bc.de', :password => 'password1', :password_confirmation => 'password1'
+u2.save!
+u3 = User.new email: 'b@bc.de', :password => 'password1', :password_confirmation => 'password1'
+u3.save!
 User.create! email: 'c@bc.de', :password => 'password1', :password_confirmation => 'password1'
+
+
+Transaction.create! :amount => 22, :creditor => u1.id, :debtors => [u2.id, u3.id]
