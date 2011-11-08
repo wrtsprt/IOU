@@ -8,12 +8,12 @@ class Transaction < ActiveRecord::Base
   after_save :create_dependent_records
 
   scope :for_user, ->(user) {
-    joins("JOIN `transaction_records` ON `transaction_records`.`transaction_id` = `transactions`.`id`")
-    .where(['`transaction_records`.creditor_id = ? OR `transaction_records`.debtor_id = ?', user.id, user.id]).select("DISTINCT `transactions`.*")
+    joins("JOIN transaction_records ON transaction_records.transaction_id = transactions.id")
+    .where(['transaction_records.creditor_id = ? OR transaction_records.debtor_id = ?', user.id, user.id]).select("DISTINCT transactions.*")
   }
 
   scope :for_users, ->(user1, user2) {
-    joins("JOIN `transaction_records` ON `transaction_records`.`transaction_id` = `transactions`.`id`").where(['`transaction_records`.creditor_id = ? AND `transaction_records`.debtor_id = ? OR `transaction_records`.creditor_id = ? AND `transaction_records`.debtor_id = ?', user1.id, user2.id, user2.id, user1.id])
+    joins("JOIN transaction_records ON transaction_records.transaction_id = transactions.id").where(['`transaction_records`.creditor_id = ? AND `transaction_records`.debtor_id = ? OR `transaction_records`.creditor_id = ? AND `transaction_records`.debtor_id = ?', user1.id, user2.id, user2.id, user1.id])
   }
 
   def debtors
