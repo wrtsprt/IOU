@@ -1,6 +1,5 @@
-- simple transaction test
-- make static multiple participants work
-- more complex transaction test
-- javascriptify multi participants
+- check repeated creditor in javascript
+- make sign_up work
+- make cucumber scenario to test basic workflow
+- introduce friends concept (only show subset of users on platfrom)
 
-- style new bill form
