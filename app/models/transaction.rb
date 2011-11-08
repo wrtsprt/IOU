@@ -1,6 +1,7 @@
 class Transaction < ActiveRecord::Base
 
   validates_presence_of :amount
+  validates_with ::IdValidator
 
   has_many :transaction_records, :dependent => :destroy
 
@@ -16,6 +17,7 @@ class Transaction < ActiveRecord::Base
   }
 
   def debtors
+    return @debtors if @debtors
     TransactionRecord.for_transaction(self.id).value_of :debtor_id
   end
 
@@ -24,6 +26,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def creditor
+    return @creditor if @creditor
     TransactionRecord.for_transaction(self.id).value_of :creditor_id
   end
 
