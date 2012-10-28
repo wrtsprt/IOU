@@ -1,13 +1,5 @@
-== Welcome to IOU
+IOU
+===
 
-This is a small example of a dept tracking app.
-Its in a very early stage
+This is a proof of concept of a dept tracking app.
 
-A current version is deployed under: http://pure-river-6302.herokuapp.com/
-
-Users: a@bc.de
-       b@bc.de
-       c@bc.de
-       r@bc.de
-
-Passwords: password1
