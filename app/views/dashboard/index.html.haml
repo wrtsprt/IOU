@@ -1,17 +1,16 @@
 %h1 Overview
 
-%table
-  %tr
-    %th User
-    %th Owes you
-    %th You owe
-  - User.without(current_user).each do |user|
-    - sum       = user.owes(current_user)
-    - self_debt = current_user.owes(user)
-    - result    = (sum - self_debt).abs
-    - unless sum == 0 && self_debt == 0
-      %tr
-        %td= link_to user.email, transactions_path(:user => user.id)
+.plus=  "You need to collect #{@sum_credit} €."
+.minus= "You owe #{@sum_debt} €."
 
-        %td{:class => :green}= number_to_currency(result, :locale => :fr) if sum > self_debt
-        %td{:class => :red}=   number_to_currency(result, :locale => :fr) if sum < self_debt
+.all_users
+  %table
+    %tr
+      %th User
+      %th Owes you
+      %th You owe
+    - @users.each do |user_info|
+      %tr
+        %td= link_to user_info[0].email, transactions_path(:user => user_info[0].id)
+        %td{:class => user_info[2]}= number_to_currency(user_info[1], :locale => :fr)
+
