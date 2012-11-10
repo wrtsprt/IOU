@@ -1,17 +1,65 @@
 //= require_self
 //= require_tree .
 
-@import "compass";
-@import "compass/reset";
-@import "blueprint";
+@import "compass";                  // Import Compass library
+@import "blueprint";                // Import Blueprint Grid System
+@import "core/variables";           // Base variables repository, Bootstrap variables overwrites
+// @import "styles";
 
-$default-font-color: #C6C6C6;
-$default-background-color: #2F2F2F;
-$default-font-size: 14px;
+/********************************************/
+/*                                          */
+/*  THIS SHOULD BE IN THE FILE "VARIABLES"  */
+/*                                          */
+/********************************************/
+
+// GLOBAL VALUES
+// --------------------------------------------------
+
+// Color Scheme
+$generalBackgroundColor:  #E0FFFF !default;
+$generalTextColor:        #333    !default;
+
+// Typography
+$generalFont:             'Droid Sans', Helvetica, Arial, sans-serif !default;
+$generalFontSize:         16px  !default;
+$generalLineHeight:       1.5em !default;
+
+// Headers
+$headerFontFamily:  'Droid Serif', Georgia, Times, serif !default;
+$headerFontWeight:  bold;
+$headerFontStyle:   normal;
+$headerFontColor:   #333;
+
+
+$defaultInputBorderRadius:  3px !default;
+
+
+
+
+/********************************************/
+/*                                          */
+/*    THIS SHOULD BE IN THE FILE "STYLES"   */
+/*                                          */
+/********************************************/
+*, *:before, *:after {
+  @include box-sizing(border-box);
+}
 
 body {
-  background-color: $default-background-color;
+  background-color: $generalBackgroundColor;
+  font: $generalFontSize $generalFont;
+  line-height: $generalLineHeight;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headerFontFamily;
+  font-weight: $headerFontWeight;
+  font-style: $headerFontStyle;
+  color: $headerFontColor;
+}
+
+
+
 
 a {
   color: #84BCDE;
@@ -28,9 +76,6 @@ h1 {
 }
 
 #container {
-  font: $default-font-size $blueprint-font-family;
-  background-color: $default-background-color;
-  color: $default-font-color;
 
   @include container;
   @include pie-clearfix;
@@ -90,5 +135,26 @@ h1 {
     @include notice;
     background-color: #DADBB1;
     border-color: #DADBB1;
+  }
+}
+
+input {
+  border: 1px solid #DDD;
+  padding: 8px;
+  @include border-radius($defaultInputBorderRadius);
+}
+.user_new input[type="email"], .user_new input[type="password"] {
+  background: #fff image-url("icons/credentials.png") no-repeat;
+  height: 34px;
+  line-height: 15px;
+  padding-left: 30px;
+  &#user_password {
+    background-position: -8px -141px;
+    @include border-top-radius(0)
+  }
+  &#user_email {
+    background-position: -10px -104px;
+    margin-bottom: -1px;
+    @include border-bottom-radius(0)
   }
 }
