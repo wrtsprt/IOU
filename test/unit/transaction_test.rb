@@ -21,6 +21,15 @@ class TransactionTest < ActiveSupport::TestCase
     assert_equal 0,  User.find(1).owes(User.find(2))
   end
 
+  test "split bill with creditor participating" do
+    Transaction.create! :name => "transaction1", :creditor => 1, :debtors => [1,2,3,4], :amount => 12
+
+    assert_equal 3,  User.find(2).owes(User.find(1)).to_f
+    assert_equal 3,  User.find(3).owes(User.find(1)).to_f
+    assert_equal 3,  User.find(4).owes(User.find(1)).to_f
+    assert_equal 0,  User.find(1).owes(User.find(2))
+  end
+
   test "split bill with uneven result" do
     Transaction.create! :name => "transaction1", :creditor => 1, :debtors => [2,3,4], :amount => 8.1
 
