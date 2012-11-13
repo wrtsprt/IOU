@@ -1,7 +1,6 @@
 - test: 
-  - make example functional test work (needs devise test helpers for authentication during test)
+  - create functional test covering my balance and creating a bill
+  - make cucumber scenario to test basic workflow (cucumber? really??)
+- introduce friends concept (only show subset of users on platform)
 - check repeated creditor in javascript
 - make sign_up work
-- make cucumber scenario to test basic workflow
-- introduce friends concept (only show subset of users on platform)
-
