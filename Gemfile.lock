@@ -30,6 +30,7 @@ GEM
     activesupport (3.1.1)
       multi_json (~> 1.0)
     addressable (2.2.6)
+    ansi (1.4.3)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -154,6 +155,8 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    turn (0.9.6)
+      ansi
     tzinfo (0.3.30)
     uglifier (1.0.4)
       execjs (>= 0.3.0)
@@ -184,5 +187,6 @@ DEPENDENCIES
   pg
   rails (= 3.1.1)
   sass-rails (~> 3.1.4)
+  turn
   uglifier (>= 1.0.3)
   valium

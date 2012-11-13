@@ -41,15 +41,15 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'minitest'
-  # gem 'turn', :require => false
-  gem "cucumber-rails", ">= 1.1.1", :group => :test
-  gem "capybara", ">= 1.1.1", :group => :test
-  gem "database_cleaner", ">= 0.6.7", :group => :test
+  gem 'turn', :require => false
+  gem "cucumber-rails", ">= 1.1.1", :require => false
+  gem "capybara", ">= 1.1.1"
+  gem "database_cleaner", ">= 0.6.7"
+  gem "launchy", ">= 2.0.5"
 end
 
 gem "haml", ">= 3.1.2"
 gem "haml-rails", ">= 0.3.4", :group => :development
 gem "compass", "~> 0.12.alpha.0"
-gem "launchy", ">= 2.0.5", :group => :test
 gem "devise", ">= 1.4.9"
 gem 'valium'
