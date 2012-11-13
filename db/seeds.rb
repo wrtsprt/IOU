@@ -16,4 +16,4 @@ u3.save!
 User.create! email: 'c@bc.de', :password => 'password1', :password_confirmation => 'password1'
 
 
-Transaction.create! :amount => 22, :creditor => u1.id, :debtors => [u2.id, u3.id]
+Transaction.create! :amount => 22, :creditor_id => u1.id, :debtor_ids => [u2.id, u3.id]

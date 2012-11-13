@@ -8,11 +8,11 @@
 
   .field
     = label_tag "Who paid?"
-    = f.select :creditor, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
+    = f.select :creditor_id, ([["YOU (#{current_user.email})", current_user.id]] + User.without(current_user).all.collect{|u| [u.email, u.id]})
 
   .multi
     %ul#debtors
-      - (@transaction.debtors.empty? ? [nil] : @transaction.debtors).each do |debtor_id|
+      - (@transaction.debtor_ids.empty? ? [nil] : @transaction.debtor_ids).each do |debtor_id|
         = render 'debtor', :selected => debtor_id
     .field
       = link_to "Add Another", "#add", :id => "add-another"
