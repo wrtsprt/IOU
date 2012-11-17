@@ -2,6 +2,7 @@
 //= require_tree .
 
 @import "compass";                  // Import Compass library
+@import "compass/reset";            // Import Reset Compass
 @import "blueprint";                // Import Blueprint Grid System
 @import "core/variables";           // Base variables repository, Bootstrap variables overwrites
 // @import "styles";
@@ -17,7 +18,8 @@
 
 // Color Scheme
 $generalBackgroundColor:  #E0FFFF !default;
-$generalTextColor:        #333    !default;
+$generalTextColor:        #333 !default;
+$generalBorderColor:      #DDD !default;
 
 // Typography
 $generalFont:             'Droid Sans', Helvetica, Arial, sans-serif !default;
@@ -31,10 +33,118 @@ $headerFontStyle:   normal;
 $headerFontColor:   #333;
 
 
-$defaultInputBorderRadius:  3px !default;
+$defaultInputBorderRadius:  4px !default;
 
 
+input {
+  border: 1px solid #DDD;
+  font-size: 14px;
+  padding: 8px;
+  @include border-radius($defaultInputBorderRadius);
+}
 
+
+/********************************************/
+/*                                          */
+/*    THIS SHOULD BE IN THE FILE "LAYOUT"   */
+/*                                          */
+/********************************************/
+#top-bar {
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 1000;
+}
+#top-bar-inner {
+  background-color: #1B1B1B;
+  height: 40px;
+  @include linear-gradient(#111,#222);
+  @include pie-clearfix;
+  & > ul {
+    list-style: none;
+    & > li {
+      float: left;
+    }
+  }
+  a {
+    display: block;
+    margin: 7px 15px 7px;
+    color: #999;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    &:hover {
+      color: #fff;
+    }
+  }
+  .button {
+    margin-top: 5px;
+  }
+}
+.border-wrapper {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+.button-green {
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFF !important;
+  padding: 2px 12px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  transition: background-color .3s;
+  @include border-radius($defaultInputBorderRadius);
+  @include linear-gradient(#62C462, #51A351);
+  &:hover {
+    background: #51A351;;
+  }
+}
+#footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  h1 {
+    font-size: 54px;
+    opacity: .15;
+  }
+}
+
+/********************************************/
+/*                                          */
+/*  THIS SHOULD BE IN THE FILE "BOOTSTRAP"  */
+/*                                          */
+/********************************************/
+.pull-right {
+  float: right;
+}
+
+/********************************************/
+/*                                          */
+/*    THIS SHOULD BE IN THE FILE "FORM"     */
+/*                                          */
+/********************************************/
+form {
+  background-color: #fff;
+  border: 1px solid $generalBorderColor;
+  padding: 20px;
+  @include border-radius($defaultInputBorderRadius);
+}
+
+/********************************************/
+/*                                          */
+/*    THIS SHOULD BE IN THE FILE "ERROR"    */
+/*                                          */
+/********************************************/
+#error_explanation {
+  background-color: #F2DEDE;
+  border: 1px solid #EED3D7;
+  color: #B94A48;
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  @include border-radius($defaultInputBorderRadius);
+  h2 {
+    color: inherit;
+  }
+}
 
 /********************************************/
 /*                                          */
@@ -57,7 +167,13 @@ h1, h2, h3, h4, h5, h6 {
   font-style: $headerFontStyle;
   color: $headerFontColor;
 }
-
+h1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+h2 {
+  font-size: 24px;
+}
 
 
 
@@ -67,12 +183,6 @@ a {
   &:hover {
    color: #fff;
   }
-}
-
-h1 {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-weight: 700;
 }
 
 #container {
@@ -136,12 +246,6 @@ h1 {
     background-color: #DADBB1;
     border-color: #DADBB1;
   }
-}
-
-input {
-  border: 1px solid #DDD;
-  padding: 8px;
-  @include border-radius($defaultInputBorderRadius);
 }
 .user_new input[type="email"], .user_new input[type="password"] {
   background: #fff image-url("icons/credentials.png") no-repeat;
