@@ -8,30 +8,25 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    %nav#top-bar
-      .border-wrapper
-        #top-bar-inner
-          = link_to 'New bill', new_transaction_path, class: "button button-green pull-right"
-          %ul
-            %li= link_to 'My Balance', dashboard_path
-            %li= link_to 'All Bills', transactions_path
-
-      / .user-menu
-      /   - if user_signed_in?
-      /     = current_user.email
-      /     |
-      /     =link_to 'logout', :destroy_user_session, :method => :delete
-      /   - else
-      /     =link_to 'login', :new_user_session
-
-    #container
-      %section#content
+    %header#top-bar.container
+      #account-menu
+        - if user_signed_in?
+          = current_user.email
+          ·
+          = link_to 'Sign out', :destroy_user_session, :method => :delete
+        - else
+          =link_to 'Sign in', :new_user_session
+      %nav
+        %ul
+          %li= link_to 'My Balance', dashboard_path
+          %li= link_to 'All Bills', transactions_path
+          %li= link_to 'Create A New Bill', new_transaction_path, class: "btn btn-new"
+    %section#content.container
+      - if notice
         .flash
-          - if notice
-            %p{:class => :notice}= notice
-          - if alert
-            %p{:class => :notice}= alert
+          %p{:class => :notice}= notice
+      - if alert
+        .flash
+          %p{:class => :notice}= alert
 
-        = yield
-    #footer
-      %h1 IOU
+      = yield
