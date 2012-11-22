@@ -7,24 +7,25 @@
     = stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Droid+Sans"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body{:class => :"two-col"}
+  %body
+    %nav#top-bar
+      .border-wrapper
+        #top-bar-inner
+          = link_to 'New bill', new_transaction_path, class: "button button-green pull-right"
+          %ul
+            %li= link_to 'My Balance', dashboard_path
+            %li= link_to 'All Bills', transactions_path
+
+      / .user-menu
+      /   - if user_signed_in?
+      /     = current_user.email
+      /     |
+      /     =link_to 'logout', :destroy_user_session, :method => :delete
+      /   - else
+      /     =link_to 'login', :new_user_session
+
     #container
-      #header
-        .user-menu
-          - if user_signed_in?
-            = current_user.email
-            |
-            =link_to 'logout', :destroy_user_session, :method => :delete
-          - else
-            =link_to 'login', :new_user_session
-
-      %aside#sidebar
-        %ul
-          %li= link_to 'My Balance', dashboard_path
-          %li= link_to 'New bill', new_transaction_path
-          %li= link_to 'All bills (Debug)', transactions_path
-
-      #content
+      %section#content
         .flash
           - if notice
             %p{:class => :notice}= notice
@@ -32,3 +33,5 @@
             %p{:class => :notice}= alert
 
         = yield
+    #footer
+      %h1 IOU
