@@ -3,7 +3,6 @@
 
 @import "compass";                  // Import Compass library
 @import "compass/reset";            // Import Reset Compass
-@import "blueprint";                // Import Blueprint Grid System
 @import "core/variables";           // Base variables repository, Bootstrap variables overwrites
 // @import "styles";
 
@@ -17,9 +16,13 @@
 // --------------------------------------------------
 
 // Color Scheme
-$generalBackgroundColor:  #E0FFFF !default;
+$generalBackgroundColor:  #FFF !default;
 $generalTextColor:        #333 !default;
 $generalBorderColor:      #DDD !default;
+
+$topBarColor:             #666 !default;
+
+$green:                   #9C6 !default;
 
 // Typography
 $generalFont:             'Droid Sans', Helvetica, Arial, sans-serif !default;
@@ -50,51 +53,60 @@ input {
 /*                                          */
 /********************************************/
 #top-bar {
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: 1000;
-}
-#top-bar-inner {
-  background-color: #1B1B1B;
-  height: 40px;
-  @include linear-gradient(#111,#222);
+  background-color: #EFEFEF;
+  border-bottom: 2px solid #e9e9e9;
+  color: $topBarColor;
+  padding-top: 20px;
+  padding-bottom: 20px;
   @include pie-clearfix;
-  & > ul {
-    list-style: none;
-    & > li {
-      float: left;
-    }
-  }
   a {
-    display: block;
-    margin: 7px 15px 7px;
-    color: #999;
+    color: $topBarColor;
     text-decoration: none;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     &:hover {
-      color: #fff;
+      color: $green;
     }
   }
-  .button {
-    margin-top: 5px;
+  & > nav {
+    ul {
+      list-style: none;
+    }
+    li {
+      display: inline;
+      margin-right: 15px;
+    }
   }
 }
-.border-wrapper {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+#account-menu {
+  color: lighten($topBarColor, 20%);
+  float: right;
+  font-size: 14px;
+  a {
+    color: lighten($topBarColor, 20%);
+  }
+}
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.button-green {
+/********************************************/
+/*                                          */
+/*  THIS SHOULD BE IN THE FILE "UI/BTN"     */
+/*                                          */
+/********************************************/
+.btn {
   border: 1px solid;
+}
+.btn-new {
+  background: darken($green, 20%);
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   color: #FFF !important;
-  padding: 2px 12px;
+  padding: 3px 5px;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
   transition: background-color .3s;
   @include border-radius($defaultInputBorderRadius);
-  @include linear-gradient(#62C462, #51A351);
   &:hover {
-    background: #51A351;;
+    background: darken($green, 25%);
   }
 }
 #footer {
@@ -157,15 +169,15 @@ form {
 
 body {
   background-color: $generalBackgroundColor;
+  color: $generalTextColor;
   font: $generalFontSize $generalFont;
   line-height: $generalLineHeight;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $headerFontFamily;
-  font-weight: $headerFontWeight;
   font-style: $headerFontStyle;
-  color: $headerFontColor;
+  font-weight: $headerFontWeight;
 }
 h1 {
   padding-top: 20px;
@@ -185,24 +197,16 @@ a {
   }
 }
 
-#container {
-
-  @include container;
-  @include pie-clearfix;
-  #header, #footer {
-    @include column(24, true); }
-  #sidebar {
-    @include column(3);
-    margin-top: 21px;
+#content {
+  h1, h2, h3, h4, h5, h6 {
+    color: $green;
   }
-  #content {
-    @include column(20, true); }
-
-  #header {
-    .user-menu {
-      float: right;
-    }
+  h1 {
+    font-size: 1.5em;
+    line-height: 1.5em;
   }
+}
+
 
   table {
       $table-color: #7a98c6;
@@ -229,7 +233,7 @@ a {
     float: left;
     width: 25%;
   }
-}
+
 
 .green {
   color: green;
@@ -242,7 +246,6 @@ a {
 .flash {
   padding: 5px;
   .notice {
-    @include notice;
     background-color: #DADBB1;
     border-color: #DADBB1;
   }
